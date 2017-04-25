@@ -36,6 +36,8 @@ if (process.env.TRAVIS && process.env.NODE_ENV === 'test') {
     port: process.env.RDS_PORT,
     database: process.env.RDS_DATABASE
   });
+  console.log(process.env.RDS_HOSTNAME);
+  console.log(process.env.RDS_USERNAME);
 }
 
 const db = Promise.promisifyAll(connection, { multiArgs: true });
