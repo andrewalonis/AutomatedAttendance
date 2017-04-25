@@ -6,6 +6,7 @@ let connection;
 
 /* istanbul ignore next */
 if (process.env.TRAVIS && process.env.NODE_ENV === 'test') {
+  console.log('if');
   // travis CI localhost
   database = 'automatedattendance';
   connection = mysql.createConnection({
@@ -13,6 +14,7 @@ if (process.env.TRAVIS && process.env.NODE_ENV === 'test') {
     password: ''
   });
 } else if (process.env.LOCAL_ENV && process.env.CLOUD_TEST_DB) {
+  console.log('else if 1');
   // google cloud db
   database = process.env.CLOUD_TEST_DB_NAME;
   connection = mysql.createConnection({
@@ -21,20 +23,30 @@ if (process.env.TRAVIS && process.env.NODE_ENV === 'test') {
     password: process.env.CLOUD_TEST_DB_PASSWORD,
   });
 } else if (process.env.LOCAL_ENV) {
+  console.log('else if 2');
   // localhost
-  database = process.env.MYSQL_DB_NAME_LOCAL;
+  // database = process.env.MYSQL_DB_NAME_LOCAL;
+  // connection = mysql.createConnection({
+  //   user: process.env.MYSQL_ADMIN_LOCAL,
+  //   password: process.env.MYSQL_PASSWORD_LOCAL,
+  // });
+  database = process.env.RDS_DB_NAME;
   connection = mysql.createConnection({
-    user: process.env.MYSQL_ADMIN_LOCAL,
-    password: process.env.MYSQL_PASSWORD_LOCAL,
-  });
+    host: process.env.RDS_HOSTNAME,
+    user: process.env.RDS_USERNAME,
+    password: process.env.RDS_PASSWORD,
+    port: process.env.RDS_PORT,
+    database: process.env.RDS_DATABASE
+  });  
 } else {
-  database = 'AutomatedAttendanceAWSDB';
+  console.log('else');
+  database = process.env.RDS_DB_NAME;
   connection = mysql.createConnection({
-    host: 'westautomatedattendance.c839zg3bfabx.us-west-2.rds.amazonaws.com',
-    user: 'aaallstars',
-    password: 'password',
-    port: '3306',
-    database: 'AutomatedAttendanceAWSDB'
+    host: process.env.RDS_HOSTNAME,
+    user: process.env.RDS_USERNAME,
+    password: process.env.RDS_PASSWORD,
+    port: process.env.RDS_PORT,
+    database: process.env.RDS_DATABASE
   });
   // console.log(process.env.RDS_HOSTNAME);
   // console.log(process.env.RDS_USERNAME);
