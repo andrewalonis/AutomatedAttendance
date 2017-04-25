@@ -28,16 +28,16 @@ if (process.env.TRAVIS && process.env.NODE_ENV === 'test') {
     password: process.env.MYSQL_PASSWORD_LOCAL,
   });
 } else {
-  database = process.env.RDS_DB_NAME;
+  database = 'AutomatedAttendanceAWSDB';
   connection = mysql.createConnection({
-    host: process.env.RDS_HOSTNAME,
-    user: process.env.RDS_USERNAME,
-    password: process.env.RDS_PASSWORD,
-    port: process.env.RDS_PORT,
-    database: process.env.RDS_DATABASE
+    host: 'westautomatedattendance.c839zg3bfabx.us-west-2.rds.amazonaws.com',
+    user: 'aaallstars',
+    password: 'password',
+    port: '3306',
+    database: 'AutomatedAttendanceAWSDB'
   });
-  console.log(process.env.RDS_HOSTNAME);
-  console.log(process.env.RDS_USERNAME);
+  // console.log(process.env.RDS_HOSTNAME);
+  // console.log(process.env.RDS_USERNAME);
 }
 
 const db = Promise.promisifyAll(connection, { multiArgs: true });
