@@ -66,7 +66,7 @@ npm run s
 npm test
 ```
 > Then view code coverage by opening ~/coverage/report/index.html
-ßß
+
 ### Technology
 
 - React, NodeJS, ExpressJS, MySQL
