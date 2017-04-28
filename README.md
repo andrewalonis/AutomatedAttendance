@@ -8,7 +8,7 @@
 # Automated Attendance
 
 > A facial recognition based automated attendance system for Hack Reactor students and staff.
-> <a href="https://automatedattendance.herokuapp.com/">automatedattendance.herokuapp.com</a>"
+> <a href="https://automatedattendance.herokuapp.com/">automatedattendance.herokuapp.com</a>
 
 
 ## Team
